@@ -183,3 +183,34 @@ def salvarRecurso(request):
     recurso.quantidade=quantidade
     recurso.save()
     return redirect('/recurso')
+
+@login_required
+def listaCategoria(request):
+    categorias= Categoria.objects.all()
+    return render(request,'listaCategoria.html',context={'categorias':categorias})
+
+@login_required
+def adicionarCategoria(request):
+    return render(request,'adicionarCategoria.html',context=None)
+@login_required
+def editarCategoria(request,id):
+    categoria= Categoria.objects.get(pk=id)
+    return render(request,'adicionarCategoria.html',context={'categoria':categoria})
+@login_required
+def excluirCategoria(request,id):
+    categoria= Categoria.objects.get(pk=id)
+    categoria.delete()
+    return redirect('/categoria')
+@login_required
+def salvarCategoria(request):
+    nome= request.POST.get('nome')
+    descricao= request.POST.get('descricao')
+    id_categoria= request.POST.get('id_categoria')
+    if id_categoria:
+        categoria= Categoria.objects.get(pk=id_categoria)
+    else:
+        categoria= Categoria()
+    categoria.nome=nome
+    categoria.descricao=descricao
+    categoria.save()
+    return redirect('/categoria')
