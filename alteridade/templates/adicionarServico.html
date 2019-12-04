@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block conteudo %}
+<mat-card>
+    <mat-card-header><h5 class="text-center">Dados do Serviço</h5></mat-card-header>
+</mat-card>
+
+<form action="/servico/salvar" method="post">
+    {% csrf_token %}
+
+    <input type="hidden" name="id_servico" value="{{servico.pk}}">
+    <div class='form-group'>
+        <label>Nome:</label>
+        <input  class ='form-control' id = 'nome' name='nome' type="text" value='{{servico.nome}}' required></input>
+    </div>
+    <br/>
+    <div class='form-group'>
+        <label>Descrição:</label>
+        <input  class ='form-control' id = 'descricao' name='descricao' type="text" value='{{servico.descricao}}' required></input>
+    </div>
+    <br/>
+    <div class='form-group'>
+        <label>Categoria:</label>
+        <select class= 'form-control' id = 'nome_categoria' name='nome_categoria' value='{{categoria.id}}'>
+            {% for c in categoria %}
+			    <option value="{{c.id}}"> {{c.nome}}</option>
+			{% endfor %}
+        </select>
+    </div>
+    <br/>
+    <button type="submit" class="btn btn-success" role="button">Salvar</button>
+    <a href="/servico" class="btn btn-secondary"> Cancelar</a>
+</form>
+  
+{% endblock %}

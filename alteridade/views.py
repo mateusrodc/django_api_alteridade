@@ -214,3 +214,37 @@ def salvarCategoria(request):
     categoria.descricao=descricao
     categoria.save()
     return redirect('/categoria')
+@login_required
+def listaServico(request):
+    servicos= Servico.objects.all()
+    return render(request,'listaServico.html',context={'servicos':servicos})
+@login_required
+def adicionarServico(request):
+    categoria= Categoria.objects.all()
+    return render(request,'adicionarServico.html',context={'categoria':categoria})
+@login_required
+def editarServico(request,id):
+    servico= Servico.objects.get(pk=id)
+    categoria= Categoria.objects.all()
+    return render(request,'adicionarServico.html',context={'servico':servico,'categoria':categoria})
+@login_required
+def excluirServico(request,id):
+    servico= Servico.objects.get(pk=id)
+    servico.delete()
+    return redirect('/servico')
+@login_required
+def salvarServico(request):
+    nome= request.POST.get('nome')
+    descricao= request.POST.get('descricao')
+    categoria= request.POST.get('nome_categoria')
+    id_servico= request.POST.get('id_servico')
+    if id_servico:
+        servico= Servico.objects.get(pk=id_servico)
+    else:
+        servico= Servico()
+
+    servico.nome=nome
+    servico.descricao=descricao
+    servico.categoria_id=categoria
+    servico.save()
+    return redirect('/servico')

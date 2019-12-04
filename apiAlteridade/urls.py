@@ -57,6 +57,12 @@ urlpatterns = [
     path('categoria/add',adicionarCategoria,name='adicionar_categoria'),
     path('categoria/salvar',salvarCategoria,name='salvar_categoria'),
     path('categoria/editar/<int:id>/',editarCategoria,name='editar_categoria'),
-    path('categoria/excluir/<int:id>/',excluirCategoria,name='excluir_categoria'),   
+    path('categoria/excluir/<int:id>/',excluirCategoria,name='excluir_categoria'),
+
+    path('servico/',listaServico,name='lista_servico'),
+    path('servico/add',adicionarServico,name='adicionar_servico'),
+    path('servico/salvar',salvarServico,name='salvar_servico'),
+    path('servico/editar/<int:id>/',editarServico,name='editar_servico'),
+    path('servico/excluir/<int:id>/',excluirServico,name='excluir_servico'),   
 
 ]
