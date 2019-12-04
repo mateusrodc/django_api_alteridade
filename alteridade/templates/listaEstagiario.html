@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block conteudo %}
+
+<mat-card>
+    <mat-card-header><h5 class="text-center">Lista de Estagiários</h5></mat-card-header>
+</mat-card>
+<a class="btn btn-primary" role='button' href='/estagiario/add'>Novo Estagiário</a>
+    <br />
+    <br />
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">ESTAGIÁRIO</th>
+                <th scope="col">CGU</th>
+                <th scope="col">AÇÕES</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for e in estagiarios %}
+                <tr>
+                    <th scope="row">{{ e.pk }}</th>
+                    <td>{{ e.nome }}</td>
+                    <td>{{e.cgu}}</td>
+                    <td>
+                        <a href="/estagiario/editar/{{e.pk}}" class="btn btn-warning" >Editar</a>
+                        <a href="/estagiario/excluir/{{e.pk}}" class="btn btn-danger" >Remover</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

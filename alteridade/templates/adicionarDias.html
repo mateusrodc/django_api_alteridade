@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block conteudo %}
+<mat-card>
+    <mat-card-header><h5 class="text-center">Dados dos Dias de Atendimento</h5></mat-card-header>
+</mat-card>
+
+<form action="/dias/salvar" method="post">
+    {% csrf_token %}
+
+    <input type="hidden" name="id_dias" value="{{dias.pk}}">
+    <div class='form-group'>
+        <label>Dia da Semana:</label>
+        <input  class ='form-control' id = 'dia_atendimento' name='dia_atendimento' type="text" value='{{dias.diaAtendimento}}' required></input>
+    </div>
+    <br/>
+    <div class='form-group'>
+        <label>Horário de Início:</label>
+        <input  class ='form-control' id ='horario_inicio' name='horario_inicio' type="time" value='{{dias.horario_inicio}}' required></input>
+    </div>
+    <br/>
+    <div class='form-group'>
+        <label>Horário de Término:</label>
+        <input  class ='form-control' id = 'horario_termino' name='horario_termino' type="time" placeholder="" value='{{dias.horario_termino}}' required></input>
+    </div>
+    <br/>
+    <button type="submit" class="btn btn-success" role="button">Salvar</button>
+    <a href="/dias" class="btn btn-secondary"> Cancelar</a>
+</form>
+  
+{% endblock %}

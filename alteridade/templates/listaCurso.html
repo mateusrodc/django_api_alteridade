@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block conteudo %}
+
+<mat-card>
+    <mat-card-header><h5 class="text-center">Lista de Cursos</h5></mat-card-header>
+</mat-card>
+<a class="btn btn-primary" role='button' href='/curso/add'>Novo Curso</a>
+    <br />
+    <br />
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">CURSO</th>
+                <th scope="col">AÇÕES</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for c in cursos %}
+                <tr>
+                    <th scope="row">{{ c.pk }}</th>
+                    <td>{{ c.nome }}</td>
+                    <td>
+                        <a href="/curso/editar/{{c.pk}}" class="btn btn-warning" >Editar</a>
+                        <a href="/curso/excluir/{{c.pk}}" class="btn btn-danger" >Remover</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

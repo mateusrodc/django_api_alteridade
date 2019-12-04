@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block conteudo %}
+<mat-card>
+    <mat-card-header><h5 class="text-center">Dados do Estagiário</h5></mat-card-header>
+</mat-card>
+
+<form action="/estagiario/salvar" method="post">
+    {% csrf_token %}
+
+    <input type="hidden" name="id_estagiario" value="{{estagiario.pk}}">
+    <div class='form-group'>
+        <label>Nome:</label>
+        <input  class ='form-control' id = 'nome' name='nome' type="text" value='{{estagiario.nome}}' required></input>
+    </div>
+    <br/>
+    <div class='form-group'>
+        <label>CGU:</label>
+        <input  class ='form-control' id = 'cgu' name='cgu' type="text" value='{{estagiario.cgu}}' required></input>
+    </div>
+    <br/>
+    <div class='form-group'>
+        <label>CPF:</label>
+        <input  class ='form-control' id = 'cpf' name='cpf' type="text" value='{{estagiario.cpf}}' required></input>
+    </div>
+    <br/>
+    <div class='form-group'>
+        <label>Telefone:</label>
+        <input  class ='form-control' id = 'telefone' name='telefone' type="text" value='{{estagiario.telefone}}' required></input>
+    </div>
+    <br/>
+    <div class='form-group'>
+        <label for="tipoEstagiario">Tipo de Estagiário:</label>
+        <select class= 'form-control' id = 'tipoEstagiario' name='tipoEstagiario' value='{{estagiario.tipoEstagiario}}'>
+                <option value="1">Estagiário Curricular</option>
+                <option value="2">Estagiário Extracurricular</option>
+        </select>
+    </div>
+    <br/>
+    <div class='form-group'>
+        <label for="autor_anime">Autor:</label>
+        <select class= 'form-control' id = 'autor_anime' name='autor_anime' value='{{diasAtendimento.id}}'>
+            {% for dia in diasAtendimento %}
+			    <option value="{{dia.id}}"> {{dia.diaAtendimento}}</option>
+			{% endfor %}
+        </select>
+    </div>
+    <br/>
+    <button type="submit" class="btn btn-success" role="button">Salvar</button>
+    <a href="/status" class="btn btn-secondary"> Cancelar</a>
+</form>
+  
+{% endblock %}

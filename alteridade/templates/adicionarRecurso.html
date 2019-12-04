@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block conteudo %}
+<mat-card>
+    <mat-card-header><h5 class="text-center">Dados do Recurso</h5></mat-card-header>
+</mat-card>
+
+<form action="/recurso/salvar" method="post">
+    {% csrf_token %}
+
+    <input type="hidden" name="id_recurso" value="{{recurso.pk}}">
+    <div class='form-group'>
+        <label>Nome:</label>
+        <input  class ='form-control' id = 'nome' name='nome' type="text" value='{{recurso.nome}}' required></input>
+    </div>
+    <br/>
+    <div class='form-group'>
+        <label>Descrição:</label>
+        <input  class ='form-control' id = 'descricao' name='descricao' type="text" value='{{recurso.descricao}}' required></input>
+    </div>
+    <br/>
+    <div class='form-group'>
+        <label>Quantidade:</label>
+        <input  class ='form-control' id = 'quantidade' name='quantidade' type="text" value='{{recurso.quantidade}}' required></input>
+    </div>
+    <br/>
+    <button type="submit" class="btn btn-success" role="button">Salvar</button>
+    <a href="/status" class="btn btn-secondary"> Cancelar</a>
+</form>
+  
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block conteudo %}
+
+<mat-card>
+    <mat-card-header><h5 class="text-center">Lista de Dias de Atendimento</h5></mat-card-header>
+</mat-card>
+<a class="btn btn-primary" role='button' href='/dias/add'>Novo Dia de Atendimento</a>
+    <br />
+    <br />
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">DIA DE ATENDIMENTO</th>
+                <th scope="col">AÇÕES</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for d in dias %}
+                <tr>
+                    <th scope="row">{{ d.pk }}</th>
+                    <td>{{ d.diaAtendimento }}</td>
+                    <td>
+                        <a href="/dias/editar/{{d.pk}}" class="btn btn-warning" >Editar</a>
+                        <a href="/dias/excluir/{{d.pk}}" class="btn btn-danger" >Remover</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

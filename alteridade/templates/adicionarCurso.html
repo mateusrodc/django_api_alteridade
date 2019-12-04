@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block conteudo %}
+<mat-card>
+    <mat-card-header><h5 class="text-center">Dados do Curso</h5></mat-card-header>
+</mat-card>
+
+<form action="/curso/salvar" method="post">
+    {% csrf_token %}
+
+    <input type="hidden" name="id_curso" value="{{curso.pk}}">
+    <div class='form-group'>
+        <label>Nome do Curso:</label>
+        <input  class ='form-control' id = 'nome' name='nome' type="text" value='{{curso.nome}}' required></input>
+    </div>
+    <br/>
+    <button type="submit" class="btn btn-success" role="button">Salvar</button>
+    <a href="/curso" class="btn btn-secondary"> Cancelar</a>
+</form>
+  
+{% endblock %}
