@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block conteudo %}
+
+<mat-card>
+    <mat-card-header><h5 class="text-center">Lista de Acadêmicos</h5></mat-card-header>
+</mat-card>
+<a class="btn btn-primary" role='button' href='/academico/add'>Novo Acadêmico</a>
+    <br />
+    <br />
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">NOME</th>
+                <th scope="col">CGU</th>
+                <th scope="col">AÇÕES</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for a in academicos %}
+                <tr>
+                    <th scope="row">{{ a.pk }}</th>
+                    <td>{{ a.nome }}</td>
+                    <td>{{a.cgu}}</td>
+                    <td>
+                        <a href="/academico/editar/{{a.pk}}" class="btn btn-warning" >Editar</a>
+                        <a href="/academico/excluir/{{a.pk}}" class="btn btn-danger" >Remover</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

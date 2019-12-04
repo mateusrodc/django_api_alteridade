@@ -248,3 +248,105 @@ def salvarServico(request):
     servico.categoria_id=categoria
     servico.save()
     return redirect('/servico')
+@login_required
+def listaDeficiencia(request):
+    deficiencias= TipoDeficiencia.objects.all()
+    return render(request,'listaDeficiencia.html',context={'deficiencias':deficiencias})
+@login_required
+def adicionarDeficiencia(request):
+    return render(request,'adicionarDeficiencia.html',context=None)
+@login_required
+def editarDeficiencia(request,id):
+    deficiencia= TipoDeficiencia.objects.get(pk=id)
+    return render(request,'adicionarDeficiencia.html',context={'deficiencia':deficiencia})
+@login_required
+def excluirDeficiencia(request,id):
+    deficiencia= TipoDeficiencia.objects.get(pk=id)
+    deficiencia.delete()
+    return redirect('/deficiencia')
+
+@login_required
+def salvarDeficiencia(request):
+    nome= request.POST.get('nome')
+    descricao= request.POST.get('descricao')
+    id_deficiencia= request.POST.get('id_deficiencia')
+    if id_deficiencia:
+        deficiencia= TipoDeficiencia.objects.get(pk=id_deficiencia)
+    else:
+        deficiencia= TipoDeficiencia()
+
+    deficiencia.nome=nome
+    deficiencia.descricao=descricao
+    deficiencia.save()
+    return redirect('/deficiencia')
+@login_required
+def listaAcademico(request):
+    academicos= Academico.objects.all()
+    return render(request,'listaAcademico.html',context={'academicos':academicos})
+@login_required
+def adicionarAcademico(request):
+    curso= Curso.objects.all()
+    tipoDeficiencia= TipoDeficiencia.objects.all()
+    context={
+        'curso':curso,
+        'tipoDeficiencia':tipoDeficiencia
+    }
+    return render(request,'adicionarAcademico.html',context)
+@login_required
+def editarAcademico(request,id):
+    academico = Academico.objects.get(pk=id)
+    curso = Curso.objects.all()
+    tipoDeficiencia= TipoDeficiencia.objects.all()
+
+    context={
+        'academico':academico,
+        'curso':curso,
+        'tipoDeficiencia':tipoDeficiencia
+    }
+    return render(request,'adicionarAcademico.html',context)
+@login_required
+def salvarAcademico(request):
+    cgu = request.POST.get('cgu')
+    nome = request.POST.get('nome')
+    dataNascimento = request.POST.get('dataNascimento')
+    sexo = request.POST.get('sexo')
+    naturalidade = request.POST.get('naturalidade')
+    telefone = request.POST.get('telefone')
+    celular = request.POST.get('celular')
+    email = request.POST.get('email')
+    curso = request.POST.get('curso')  #FKey
+    turno = request.POST.get('turno')
+    disponibilidadeAtendimento = request.POST.get('disponibilidadeAtendimento')
+    motivo = request.POST.get('motivo')
+    observacoes = request.POST.get('observacoes')
+    vinculo = request.POST.get('vinculo')
+    tipoDeficiencia = request.POST.get('tipoDeficiencia')   #FKey
+
+    id_academico= request.POST.get('id_academico')
+    if id_academico:
+        academico= Academico.objects.get(pk=id_academico)
+    else:
+        academico= Academico()
+
+    academico.cgu=cgu
+    academico.nome=nome
+    academico.dataNascimento=dataNascimento
+    academico.sexo=sexo
+    academico.naturalidade=naturalidade
+    academico.telefone=telefone
+    academico.celular=celular
+    academico.email=email
+    academico.curso_id=curso
+    academico.turno=turno
+    academico.disponibilidadeAtendimento=disponibilidadeAtendimento
+    academico.motivo=motivo
+    academico.observacoes=observacoes
+    academico.vinculo=vinculo
+    academico.tipoDeficiencia_id=tipoDeficiencia
+    academico.save()
+    return redirect('/academico')
+@login_required
+def excluirAcademico(request,id):
+    academico= Academico.objects.get(pk=id)
+    academico.delete()
+    return redirect('/academico')

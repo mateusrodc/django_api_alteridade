@@ -32,6 +32,7 @@
     <div class='form-group'>
         <label for="tipoEstagiario">Tipo de Estagiário:</label>
         <select class= 'form-control' id = 'tipoEstagiario' name='tipoEstagiario' value='{{estagiario.tipoEstagiario}}'>
+                <option value=""></option>
                 <option value="1">Estagiário Curricular</option>
                 <option value="2">Estagiário Extracurricular</option>
         </select>
@@ -40,6 +41,7 @@
     <div class='form-group'>
         <label for="autor_anime">Autor:</label>
         <select class= 'form-control' id = 'autor_anime' name='autor_anime' value='{{diasAtendimento.id}}'>
+            <option value=""></option>
             {% for dia in diasAtendimento %}
 			    <option value="{{dia.id}}"> {{dia.diaAtendimento}}</option>
 			{% endfor %}

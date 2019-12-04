@@ -22,6 +22,7 @@
     <div class='form-group'>
         <label>Categoria:</label>
         <select class= 'form-control' id = 'nome_categoria' name='nome_categoria' value='{{categoria.id}}'>
+            <option value=""></option>
             {% for c in categoria %}
 			    <option value="{{c.id}}"> {{c.nome}}</option>
 			{% endfor %}

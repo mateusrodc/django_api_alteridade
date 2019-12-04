@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block conteudo %}
+<mat-card>
+    <mat-card-header><h5 class="text-center">Dados dos Tipos de Deficiência</h5></mat-card-header>
+</mat-card>
+
+<form action="/deficiencia/salvar" method="post">
+    {% csrf_token %}
+
+    <input type="hidden" name="id_deficiencia" value="{{deficiencia.pk}}">
+    <div class='form-group'>
+        <label>Nome:</label>
+        <input  class ='form-control' id = 'nome' name='nome' type="text" value='{{deficiencia.nome}}' required></input>
+    </div>
+    <br/>
+    <div class='form-group'>
+        <label>Descrição:</label>
+        <input  class ='form-control' id = 'descricao' name='descricao' type="text" value='{{deficiencia.descricao}}' required></input>
+    </div>
+    <br/>
+    <button type="submit" class="btn btn-success" role="button">Salvar</button>
+    <a href="/deficiencia" class="btn btn-secondary"> Cancelar</a>
+</form>
+  
+{% endblock %}

@@ -63,6 +63,18 @@ urlpatterns = [
     path('servico/add',adicionarServico,name='adicionar_servico'),
     path('servico/salvar',salvarServico,name='salvar_servico'),
     path('servico/editar/<int:id>/',editarServico,name='editar_servico'),
-    path('servico/excluir/<int:id>/',excluirServico,name='excluir_servico'),   
+    path('servico/excluir/<int:id>/',excluirServico,name='excluir_servico'),
+
+    path('deficiencia/',listaDeficiencia,name='lista_deficiencia'),
+    path('deficiencia/add',adicionarDeficiencia,name='adicionar_deficiencia'),
+    path('deficiencia/salvar',salvarDeficiencia,name='salvar_deficiencia'),
+    path('deficiencia/editar/<int:id>/',editarDeficiencia,name='editar_deficiencia'),
+    path('deficiencia/excluir/<int:id>/',excluirDeficiencia,name='excluir_deficiencia'),
+
+    path('academico/',listaAcademico,name='lista_academico'),
+    path('academico/add',adicionarAcademico,name='adicionar_academico'),
+    path('academico/salvar',salvarAcademico,name='salvar_academico'),
+    path('academico/editar/<int:id>/',editarAcademico,name='editar_academico'),
+    path('academico/excluir/<int:id>/',excluirAcademico,name='excluir_deficiencia'),
 
 ]

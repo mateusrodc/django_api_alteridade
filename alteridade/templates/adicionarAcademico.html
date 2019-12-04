@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+
+{% block conteudo %}
+<mat-card>
+    <mat-card-header><h5 class="text-center">Dados do Acadêmico</h5></mat-card-header>
+</mat-card>
+
+<form action="/academico/salvar" method="post">
+    {% csrf_token %}
+
+    <input type="hidden" name="id_academico" value="{{academico.pk}}">
+    <div class='form-group'>
+        <label>Nome completo:</label>
+        <input  class ='form-control' id = 'nome' name='nome' type="text" value='{{academico.nome}}' required></input>
+    </div>
+    <br/>
+    <div class='form-group'>
+        <label for="autor_anime">Curso:</label>
+        <select class= 'form-control' id = 'curso' name='curso' value='{{curso.id}}' required>
+            <option value=""></option>
+            {% for c in curso %}
+                
+			    <option value="{{c.id}}"> {{c.nome}}</option>
+			{% endfor %}
+        </select>
+    </div>
+    <br/>
+    <div class='form-group'>
+        <label for="autor_anime">Sexo:</label>
+        <select class= 'form-control' id = 'sexo' name='sexo' value='{{diasAtendimento.id}}'>
+            <option value=""></option>
+            <option value="M">Masculino</option>
+            <option value="F">Feminino</option>
+        </select>
+    </div>
+    <br/>
+    <div class='form-group'>
+        <label>CGU:</label>
+        <input  class ='form-control' id = 'cgu' name='cgu' type="text" value='{{academico.cgu}}'></input>
+    </div>
+    <br/>
+    <div class='form-group'>
+        <label>Data de Nascimento:</label>
+        <input  class ='form-control' id = 'dataNascimento' name='dataNascimento' type="date" value='{{academico.dataNascimento}}'></input>
+    </div>
+    <br/>
+    <div class='form-group'>
+        <label>Naturalidade:</label>
+        <input  class ='form-control' id = 'naturalidade' name='naturalidade' type="text" value='{{academico.naturalidade}}'></input>
+    </div>
+    <br/>
+    <div class='form-group'>
+        <label>Telefone:</label>
+        <input  class ='form-control' id = 'telefone' name='telefone' type="text" value='{{academico.telefone}}'></input>
+    </div>
+    <br/>
+    <div class='form-group'>
+        <label>Celular:</label>
+        <input  class ='form-control' id = 'celular' name='celular' type="text" value='{{academico.celular}}'></input>
+    </div>
+    <br/>
+    <div class='form-group'>
+        <label>E-mail:</label>
+        <input  class ='form-control' id = 'email' name='email' type="text" value='{{academico.email}}'></input>
+    </div>
+    <br/>
+    <div class='form-group'>
+        <label>Disponibilidade de Atendimento:</label>
+        <input  class ='form-control' id = 'disponibilidadeAtendimento' name='disponibilidadeAtendimento' type="text" value='{{academico.disponibilidadeAtendimento}}'></input>
+    </div>
+    <br/>
+    <div class='form-group'>
+        <label>Turno:</label>
+        <input  class ='form-control' id = 'turno' name='turno' type="text" value='{{academico.turno}}'></input>
+    </div>
+    <br/>
+    <div class='form-group'>
+        <label>Motivo:</label>
+        <input  class ='form-control' id = 'motivo' name='motivo' type="text" value='{{academico.motivo}}'></input>
+    </div>
+    <br/>
+    <div class='form-group'>
+        <label>Observações:</label>
+        <input  class ='form-control' id = 'observacoes' name='observacoes' type="text" value='{{academico.observacoes}}'></input>
+    </div>
+    <br/>
+    <div class='form-group'>
+        <label>Vinculo:</label>
+        <input  class ='form-control' id = 'vinculo' name='vinculo' type="text" value='{{academico.vinculo}}'></input>
+    </div>
+    <br/>
+    <div class='form-group'>
+        <label for="tipoDeficiencia">Tipo de Deficiencia:</label>
+        <select class= 'form-control' id = 'tipoDeficiencia' name='tipoDeficiencia' value='{{tipoDeficiencia.id}}'>
+            <option value=""></option>
+            {% for t in tipoDeficiencia %}
+			    <option value="{{t.id}}"> {{t.nome}}</option>
+			{% endfor %}
+        </select>
+    </div>
+    <br/>
+    <button type="submit" class="btn btn-success" role="button">Salvar</button>
+    <a href="/academico" class="btn btn-secondary"> Cancelar</a>
+</form>
+  
+{% endblock %}

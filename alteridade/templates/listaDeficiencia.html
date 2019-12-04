@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block conteudo %}
+
+<mat-card>
+    <mat-card-header><h5 class="text-center">Lista de Tipos de Deficiência</h5></mat-card-header>
+</mat-card>
+<a class="btn btn-primary" role='button' href='/deficiencia/add'>Novo Tipo de Deficiência</a>
+    <br />
+    <br />
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">NOME</th>
+                <th scope="col">AÇÕES</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for d in deficiencias %}
+                <tr>
+                    <th scope="row">{{ d.pk }}</th>
+                    <td>{{ d.nome }}</td>
+                    <td>
+                        <a href="/deficiencia/editar/{{d.pk}}" class="btn btn-warning" >Editar</a>
+                        <a href="/deficiencia/excluir/{{d.pk}}" class="btn btn-danger" >Remover</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}
