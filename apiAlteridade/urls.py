@@ -77,4 +77,11 @@ urlpatterns = [
     path('academico/editar/<int:id>/',editarAcademico,name='editar_academico'),
     path('academico/excluir/<int:id>/',excluirAcademico,name='excluir_deficiencia'),
 
+    path('agendamento/',listaAgendamento,name='lista_agendamento'),
+    path('agendamento/add',adicionarAgendamento,name='adicionar_agendamento'),
+    path('agendamento/salvar',salvarAgendamento,name='salvar_agendamento'),
+    path('agendamento/editar/<int:id>/',editarAgendamento,name='editar_agendamento'),
+    path('agendamento/excluir/<int:id>/',excluirAgendamento,name='excluir_agendamento'),
+    
+
 ]

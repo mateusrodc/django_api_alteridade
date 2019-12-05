@@ -350,3 +350,73 @@ def excluirAcademico(request,id):
     academico= Academico.objects.get(pk=id)
     academico.delete()
     return redirect('/academico')
+@login_required
+def listaAgendamento(request):
+    agendamentos= Agendamento.objects.all()
+    return render(request,'listaAgendamento.html',context={'agendamentos':agendamentos})
+
+@login_required
+def adicionarAgendamento(request):
+    academico= Academico.objects.all()
+    servico= Servico.objects.all()
+    recurso= Recurso.objects.all()
+    estagiario= Estagiario.objects.all()
+    
+    context={
+        'academico':academico,
+        'servico':servico,
+        'recurso':recurso,
+        'estagiario':estagiario
+    }
+
+    return render(request,'adicionarAgendamento.html',context)
+@login_required
+def editarAgendamento(request,id):
+    agendamento= Agendamento.objects.get(pk=id)
+    academico= Academico.objects.all()
+    servico= Servico.objects.all()
+    recurso= Recurso.objects.all()
+    estagiario= Estagiario.objects.all()
+    
+    context={
+        'agendamento':agendamento,
+        'academico':academico,
+        'servico':servico,
+        'recurso':recurso,
+        'estagiario':estagiario
+    }
+    return render(request,'adicionarAgendamento.html',context)
+@login_required
+def excluirAgendamento(request,id):
+    agendamento=Agendamento.objects.get(pk=id)
+    agendamento.delete()
+    return redirect('/agendamento')
+
+@login_required
+def salvarAgendamento(request):
+    academico = request.POST.get('academico')
+    servico = request.POST.get('servico')
+    recurso = request.POST.get('recurso')
+    estagiario = request.POST.get('estagiario')
+    data = request.POST.get('data')
+    horario = request.POST.get('horario')
+    frequenciaAcademico = request.POST.get('frequenciaAcademico')
+    frequenciaEstagiario = request.POST.get('frequenciaEstagiario')
+    id_agendamento= request.POST.get('id_agendamento')
+
+    if id_agendamento:
+        agendamento= Agendamento.objects.get(pk=id_agendamento)
+
+    else:
+        agendamento= Agendamento()
+
+    agendamento.academico_id=academico
+    agendamento.servico_id=servico
+    agendamento.recurso_id=recurso
+    agendamento.estagiario_id=estagiario
+    agendamento.data=data
+    agendamento.horario=horario
+    agendamento.frequenciaAcademico=frequenciaAcademico
+    agendamento.frequenciaEstagiario=frequenciaEstagiario
+    agendamento.save()
+    return redirect('/agendamento')

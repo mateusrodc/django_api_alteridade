@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block conteudo %}
+<mat-card>
+    <mat-card-header><h5 class="text-center">Dados do Agendamento</h5></mat-card-header>
+</mat-card>
+
+<form action="/agendamento/salvar" method="post">
+    {% csrf_token %}
+
+    <input type="hidden" name="id_agendamento" value="{{agendamento.pk}}">
+    <div class='form-group'>
+        <label for="autor_anime">Academico:</label>
+        <select class= 'form-control' id = 'academico' name='academico' required>
+            <option value=""></option>
+            {% for a in academico %}
+			    <option value="{{a.id}}"> {{a.nome}}</option>
+			{% endfor %}
+        </select>
+    </div>
+    <br/>
+    <div class='form-group'>
+        <label for="autor_anime">Serviço:</label>
+        <select class= 'form-control' id = 'servico' name='servico'  required>
+            <option value=""></option>
+            {% for s in servico %}
+			    <option value="{{s.id}}"> {{s.nome}}</option>
+			{% endfor %}
+        </select>
+    </div>
+    <br/>
+    <div class='form-group'>
+        <label for="autor_anime">Recurso:</label>
+        <select class= 'form-control' id = 'recurso' name='recurso'>
+            <option value=""></option>
+            {% for r in recurso %}
+			    <option value="{{r.id}}"> {{r.nome}}</option>
+			{% endfor %}
+        </select>
+    </div>
+    <br/>
+    <div class='form-group'>
+        <label for="autor_anime">Estagiário:</label>
+        <select class= 'form-control' id = 'estagiario' name='estagiario' required>
+            <option value=""></option>
+            {% for e in estagiario %}
+			    <option value="{{e.id}}"> {{e.cgu}}</option>
+			{% endfor %}
+        </select>
+    </div>
+    <br/>
+    <div class='form-group'>
+        <label>Data:</label>
+        <input  class ='form-control' id = 'data' name='data' type="date" value='{{agendamento.data}}' required></input>
+    </div>
+    <br/>
+    <div class='form-group'>
+        <label>Horário:</label>
+        <input  class ='form-control' id = 'horario' name='horario' type="time" value='{{agendamento.horario}}' required></input>
+    </div>
+    
+    <br/>
+    <button type="submit" class="btn btn-success" role="button">Salvar</button>
+    <a href="/agendamento" class="btn btn-secondary"> Cancelar</a>
+</form>
+  
+{% endblock %}
