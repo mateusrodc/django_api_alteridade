@@ -105,7 +105,7 @@ class Agendamento(models.Model):
         return "{} ({})".format(self.academico, self.servico, self.estagiario, self.data)
 
 class Biblioteca(models.Model):
-    curso= models.CharField(max_length=120, null=True,blank=True)
+    curse= models.CharField(max_length=120, null=True,blank=True)
     people= models.CharField(max_length=120, null=False,blank=False)
     data=models.DateField()
     livro= models.CharField(max_length=200)

@@ -82,6 +82,12 @@ urlpatterns = [
     path('agendamento/salvar',salvarAgendamento,name='salvar_agendamento'),
     path('agendamento/editar/<int:id>/',editarAgendamento,name='editar_agendamento'),
     path('agendamento/excluir/<int:id>/',excluirAgendamento,name='excluir_agendamento'),
+
+    path('biblioteca/',listaBiblioteca,name='lista_biblioteca'),
+    path('biblioteca/add',adicionarBiblioteca,name='adicionar_biblioteca'),
+    path('biblioteca/salvar',salvarBiblioteca,name='salvar_biblioteca'),
+    path('biblioteca/editar/<int:id>/',editarBiblioteca,name='editar_biblioteca'),
+    path('biblioteca/excluir/<int:id>/',excluirBiblioteca,name='excluir_biblioteca'),
     
 
 ]

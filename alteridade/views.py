@@ -420,3 +420,49 @@ def salvarAgendamento(request):
     agendamento.frequenciaEstagiario=frequenciaEstagiario
     agendamento.save()
     return redirect('/agendamento')
+
+@login_required
+def listaBiblioteca(request):
+    bibliotecas= Biblioteca.objects.all()
+    return render(request,'listaBiblioteca.html',context={'bibliotecas':bibliotecas})
+
+@login_required
+def adicionarBiblioteca(request):
+    stats= Status.objects.all()
+    return render(request,'adicionarBiblioteca.html',context={'stats':stats})
+
+@login_required
+def editarBiblioteca(request,id):
+    stats= Status.objects.all()
+    biblioteca= Biblioteca.objects.get(pk=id)
+    return render(request,'adicionarBiblioteca.html',context={'stats':stats,'biblioteca':biblioteca})
+
+@login_required
+def excluirBiblioteca(request,id):
+    biblioteca= Biblioteca.objects.get(pk=id)
+    biblioteca.delete()
+    return redirect('/biblioteca')
+
+@login_required
+def salvarBiblioteca(request):
+    curse= request.POST.get('curse')
+    people= request.POST.get('people')
+    data= request.POST.get('data')
+    livro= request.POST.get('livro')
+    cargo= request.POST.get('cargo')
+    stats= request.POST.get('stats')
+
+    id_biblioteca= request.POST.get('id_biblioteca')
+    if id_biblioteca:
+        biblioteca= Biblioteca.objects.get(pk=id_biblioteca)
+    else:
+        biblioteca= Biblioteca()
+
+    biblioteca.curse=curse
+    biblioteca.people=people
+    biblioteca.data=data
+    biblioteca.livro=livro
+    biblioteca.cargo=cargo
+    biblioteca.status_id=stats
+    biblioteca.save()
+    return redirect('/biblioteca')

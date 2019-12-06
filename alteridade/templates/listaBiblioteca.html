@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block conteudo %}
+
+<mat-card>
+    <mat-card-header><h5 class="text-center">Lista de Livros na Biblioteca</h5></mat-card-header>
+</mat-card>
+<a class="btn btn-primary" role='button' href='/biblioteca/add'>Novo Livro</a>
+    <br />
+    <br />
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">LIVRO</th>
+                <th scope="col">STATUS</th>
+                <th scope="col">AÇÕES</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for b in bibliotecas %}
+                <tr>
+                    <th scope="row">{{ b.pk }}</th>
+                    <td>{{ b.livro }}</td>
+                    <td>{{ b.status.situacao }}</td>
+                    <td>
+                        <a href="/biblioteca/editar/{{b.pk}}" class="btn btn-warning" >Editar</a>
+                        <a href="/biblioteca/excluir/{{b.pk}}" class="btn btn-danger" >Remover</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

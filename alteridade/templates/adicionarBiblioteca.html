@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block conteudo %}
+<mat-card>
+    <mat-card-header><h5 class="text-center">Dados do Livro</h5></mat-card-header>
+</mat-card>
+
+<form action="/biblioteca/salvar" method="post">
+    {% csrf_token %}
+
+    <input type="hidden" name="id_biblioteca" value="{{biblioteca.pk}}">
+    <div class='form-group'>
+        <label>Nome do livro:</label>
+        <input  class ='form-control' id = 'livro' name='livro' type="text" value='{{biblioteca.livro}}' required></input>
+    </div>
+    <br/>
+    <div class='form-group'>
+        <label>Formação:</label>
+        <input  class ='form-control' id = 'curse' name='curse' type="text" value='{{biblioteca.curse}}' required></input>
+    </div>
+    <br/>
+    <div class='form-group'>
+        <label>Nome da Pessoa:</label>
+        <input  class ='form-control' id = 'people' name='people' type="text" value='{{biblioteca.people}}' required></input>
+    </div>
+    <br/>
+    <div class='form-group'>
+        <label>Data:</label>
+        <input  class ='form-control' id = 'data' name='data' type="date" value='{{biblioteca.data}}' required></input>
+    </div>
+    <br/>
+    <div class='form-group'>
+        <label>Cargo:</label>
+        <input  class ='form-control' id = 'cargo' name='cargo' type="text" value='{{biblioteca.cargo}}' ></input>
+    </div>
+    <br/>
+    <div class='form-group'>
+        <label for="autor_anime">Status do Livro:</label>
+        <select class= 'form-control' id = 'stats' name='stats' required>
+            <option value=""></option>
+            {% for s in stats %}
+			    <option value="{{s.id}}"> {{s.situacao}}</option>
+			{% endfor %}
+        </select>
+    </div>
+    <br/>
+    
+    <button type="submit" class="btn btn-success" role="button">Salvar</button>
+    <a href="/curso" class="btn btn-secondary"> Cancelar</a>
+</form>
+  
+{% endblock %}
